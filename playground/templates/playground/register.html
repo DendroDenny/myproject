@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <!-- Links to the exact same CSS file -->
     <link rel="stylesheet" href="{% static 'playground/home.css' %}">
 </head>
 <body>
@@ -14,7 +13,6 @@
         <h2>Create Account</h2>
         <p class="subtitle">Please fill in your details to sign up</p>
 
-        <!-- Display Django messages or form errors -->
         {% if messages %}
             <div class="alert-messages">
                 {% for message in messages %}
@@ -23,11 +21,9 @@
             </div>
         {% endif %}
 
-        <!-- Registration Form -->
         <form method="POST" action="">
             {% csrf_token %}
 
-            <!-- If passing Django's UserCreationForm from views.py as {{ form }} -->
             {{ form.non_field_errors }}
 
             {% for field in form %}
@@ -35,7 +31,9 @@
                     <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                     {{ field }}
                     {% if field.errors %}
-                        <small style="color: #721c24; font-size: 12px;">{{ field.errors.0 }}</small>
+                        <small style="color: #721c24; font-size: 12px; display: block; margin-top: 4px;">
+                            {{ field.errors.0 }}
+                        </small>
                     {% endif %}
                 </div>
             {% endfor %}
